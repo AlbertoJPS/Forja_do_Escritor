@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.forjadoescritor.api.Obra;
+import com.forjadoescritor.api.model.Obra;
 
 @SpringBootTest
 @AutoConfigureMockMvc
