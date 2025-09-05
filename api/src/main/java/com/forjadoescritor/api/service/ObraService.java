@@ -1,39 +1,29 @@
 package com.forjadoescritor.api.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
-
 import org.springframework.stereotype.Service;
 
-import com.forjadoescritor.api.Obra;
+import com.forjadoescritor.api.model.Obra;
+import com.forjadoescritor.api.repository.ObraRepository;
 
 @Service
 public class ObraService {
 
-    // Nosso "banco de dados" em memória. Usamos ConcurrentHashMap por ser thread-safe.
-    private final Map<UUID, Obra> obras = new ConcurrentHashMap<>();
+    private final ObraRepository obraRepository;
 
-    /**
-     * Lista todas as obras cadastradas.
-     * @return uma lista de todas as obras.
-     */
-    public List<Obra> listarTodas() {
-        return new ArrayList<>(obras.values());
+    // Injetando o repositório em vez do mapa
+    public ObraService(ObraRepository obraRepository) {
+        this.obraRepository = obraRepository;
     }
 
-    /**
-     * Cria uma nova obra, gera seu ID e a salva.
-     * @param obra O objeto da obra a ser criada, vindo da requisição.
-     * @return A obra com seu novo ID.
-     */
-    public Obra criar(Obra obra) {
-        // TODO: Implementar a validação das regras de negócio aqui.
+    public List<Obra> listarTodas() {
+        // Usando o método findAll() do repositório
+        return obraRepository.findAll();
+    }
 
-        obra.setId(UUID.randomUUID());
-        obras.put(obra.getId(), obra);
-        return obra;
+    public Obra criar(Obra obra) {
+        // Usando o método save() do repositório.
+        // Não precisamos mais gerar o ID, o banco de dados faz isso agora.
+        return obraRepository.save(obra);
     }
 }

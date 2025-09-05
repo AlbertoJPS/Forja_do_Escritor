@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.forjadoescritor.api.Obra;
+import com.forjadoescritor.api.model.Obra;
 import com.forjadoescritor.api.service.ObraService;
 
 import jakarta.validation.Valid;

@@ -1,13 +1,23 @@
-package com.forjadoescritor.api;
+package com.forjadoescritor.api.model;
 
 import java.util.UUID;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+@Entity
+@Table(name = "obras")
 @Data
 public class Obra {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @NotBlank(message = "O título não pode ser nulo ou vazio.")
